@@ -1,0 +1,37 @@
+@charset "utf-8";
+
+/*========= レイアウトのためのCSS ===============*/
+
+p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+/*========= body背景色の変化CSS ===============*/
+
+body {
+  animation: bgchange 15s ease infinite; /*変化の時間を変更したい場合は20sの部分を好きな時間に変更*/
+}
+
+@keyframes bgchange {
+  0% {
+    background: #ffe6e1;
+  } /*変化させたい色*/
+  25% {
+    background: #fdcb9e;
+  } /*変化させたい色*/
+  50% {
+    background: #fdcbc1;
+  } /*変化させたい色*/
+  75% {
+    background: #ffff8c;
+  } /*変化させたい色*/
+  90% {
+    background: #b2dffb;
+  } /*変化させたい色*/
+  100% {
+    background: #ffe6e1;
+  } /*変化させたい色*/
+}
