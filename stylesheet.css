@@ -7,7 +7,7 @@ p {
   top: 50%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
-  font-size: xx-large;
+  font-size: 200%;
 }
 
 /*========= body背景色の変化CSS ===============*/
