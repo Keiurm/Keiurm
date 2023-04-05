@@ -13,7 +13,7 @@ p {
 /*========= body背景色の変化CSS ===============*/
 
 body {
-  animation: bgchange 15s ease infinite; /*変化の時間を変更したい場合は20sの部分を好きな時間に変更*/
+  animation: bgchange 20s ease infinite;
 }
 
 @keyframes bgchange {
