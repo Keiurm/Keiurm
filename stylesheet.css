@@ -1,7 +1,5 @@
 @charset "utf-8";
 
-/*========= レイアウトのためのCSS ===============*/
-
 p {
   position: absolute;
   top: 50%;
@@ -10,29 +8,24 @@ p {
   font-size: 300%;
 }
 
-/*========= body背景色の変化CSS ===============*/
-
 body {
-  animation: bgchange 20s ease infinite;
+  animation: bgchange 15s ease infinite;
 }
 
 @keyframes bgchange {
   0% {
-    background: #ffe6e1;
-  } /*変化させたい色*/
+    background: #7da18d;
+  }
   25% {
-    background: #fdcb9e;
-  } /*変化させたい色*/
+    background: #f1e6ff;
+  }
   50% {
-    background: #fdcbc1;
-  } /*変化させたい色*/
+    background: #e1c2ff;
+  }
   75% {
-    background: #ffff8c;
-  } /*変化させたい色*/
-  90% {
-    background: #b2dffb;
-  } /*変化させたい色*/
+    background: #96aadc;
+  }
   100% {
-    background: #ffe6e1;
-  } /*変化させたい色*/
+    background: #40757f;
+  }
 }
