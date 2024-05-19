@@ -1,78 +1,30 @@
-var unit = 100,
-  canvasList, // キャンバスの配列
-  info = {}, // 全キャンバス共通の描画情報
-  colorList; // 各キャンバスの色情報
-
-function init() {
-  info.seconds = 0;
-  info.t = 0;
-  canvasList = [];
-  colorList = [];
-  // canvas1個めの色指定
-  canvasList.push(document.getElementById("waveCanvas"));
-  colorList.push(["#333", "#666", "#111"]); //重ねる波の色設定
-  // 各キャンバスの初期化
-  for (var canvasIndex in canvasList) {
-    var canvas = canvasList[canvasIndex];
-    canvas.width = document.documentElement.clientWidth; //Canvasのwidthをウィンドウの幅に合わせる
-    canvas.height = 200; //波の高さ
-    canvas.contextCache = canvas.getContext("2d");
+//テキストのカウントアップ+バーの設定
+var bar = new ProgressBar.Line(splash_text, {//id名を指定
+  easing: 'easeInOut',//アニメーション効果linear、easeIn、easeOut、easeInOutが指定可能
+  duration: 1000,//時間指定(1000＝1秒)
+  strokeWidth: 0.2,//進捗ゲージの太さ
+  color: '#555',//進捗ゲージのカラー
+  trailWidth: 0.2,//ゲージベースの線の太さ
+  trailColor: '#bbb',//ゲージベースの線のカラー
+  text: {//テキストの形状を直接指定       
+    style: {//天地中央に配置
+      position: 'absolute',
+      left: '50%',
+      top: '50%',
+      padding: '0',
+      margin: '-30px 0 0 0',//バーより上に配置
+      transform:'translate(-50%,-50%)',
+      'font-size':'1rem',
+      color: '#fff',
+    },
+    autoStyleContainer: false //自動付与のスタイルを切る
+  },
+  step: function(state, bar) {
+    bar.setText(Math.round(bar.value() * 100) + ' %'); //テキストの数値
   }
-  // 共通の更新処理呼び出し
-  update();
-}
+});
 
-function update() {
-  for (var canvasIndex in canvasList) {
-    var canvas = canvasList[canvasIndex];
-    draw(canvas, colorList[canvasIndex]);
-  }
-  info.seconds = info.seconds + 0.014;
-  info.t = info.seconds * Math.PI;
-  setTimeout(update, 35);
-}
-
-function draw(canvas, color) {
-  var context = canvas.contextCache;
-
-  context.clearRect(0, 0, canvas.width, canvas.height);
-
-  //波の重なりを描画 drawWave(canvas, color[数字（波の数を0から数えて指定）], 透過, 波の幅のzoom,波の開始位置の遅れ )
-  drawWave(canvas, color[0], 0.5, 3, 0); //0.5⇒透過具合50%、3⇒数字が大きいほど波がなだらか
-  drawWave(canvas, color[1], 0.4, 2, 250);
-  drawWave(canvas, color[2], 0.2, 1.6, 100);
-}
-
-function drawWave(canvas, color, alpha, zoom, delay) {
-  var context = canvas.contextCache;
-  context.fillStyle = color; //塗りの色
-  context.globalAlpha = alpha;
-  context.beginPath(); //パスの開始
-  drawSine(canvas, info.t / 0.5, zoom, delay);
-  context.lineTo(canvas.width + 10, canvas.height); //パスをCanvasの右下へ
-  context.lineTo(0, canvas.height); //パスをCanvasの左下へ
-  context.closePath(); //パスを閉じる
-  context.fill(); //波を塗りつぶす
-}
-
-function drawSine(canvas, t, zoom, delay) {
-  var xAxis = Math.floor(canvas.height / 2);
-  var yAxis = 0;
-  var context = canvas.contextCache;
-  // Set the initial x and y, starting at 0,0 and translating to the origin on
-  // the canvas.
-  var x = t; //時間を横の位置とする
-  var y = Math.sin(x) / zoom;
-  context.moveTo(yAxis, unit * y + xAxis); //スタート位置にパスを置く
-
-  // Loop to draw segments (横幅の分、波を描画)
-  for (i = yAxis; i <= canvas.width + 10; i += 10) {
-    x = t + (-yAxis + i) / unit / zoom;
-    y = Math.sin(x - delay) / 3;
-    context.lineTo(i, unit * y + xAxis);
-  }
-}
-
-init();
-
-Resources;
+//アニメーションスタート
+bar.animate(1.0, function () {//バーを描画する割合を指定します 1.0 なら100%まで描画します
+  $("#splash").delay(500).fadeOut(800);//アニメーションが終わったら#splashエリアをフェードアウト
+});  
