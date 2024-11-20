@@ -13,11 +13,13 @@ PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
-body {
+* {
   margin: 0;
   padding: 0;
+}
+body {
   overflow: hidden;
-  position: relative; /* これにより、子要素の絶対位置が親要素に対して設定されます */
+  position: relative;
   z-index: 0; /* 背景画像より前面に表示させるため */
 }
 
@@ -30,4 +32,16 @@ body {
   font-size: 2em;
   text-align: center;
   z-index: 50; /* アニメーションより前面に表示させるため */
+}
+
+.toggle {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+  text-align: center;
+  z-index: 50; /* アニメーションより前面に表示させるため */
+  background-color: black;
+  color: white;
 }
