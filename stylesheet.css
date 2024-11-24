@@ -42,6 +42,7 @@ body {
   font-size: 2em;
   text-align: center;
   z-index: 50; /* アニメーションより前面に表示させるため */
-  background-color: black;
   color: white;
+  background: none;
+  border: 2px solid #fff;
 }
